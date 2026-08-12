@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseShowdownPaste } from './paste.js';
 
@@ -23,6 +23,16 @@ export class TeamStore {
     const path = join(this.dir, `${slug}.txt`);
     writeFileSync(path, paste.trim() + '\n');
     return { name: slug, path, species: team.map((m) => m.species) };
+  }
+
+  delete(name: string): boolean {
+    const path = join(this.dir, `${slugify(name)}.txt`);
+    try {
+      rmSync(path);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   load(name: string): string | undefined {

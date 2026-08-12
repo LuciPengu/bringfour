@@ -252,6 +252,21 @@ export class DataService {
     return undefined;
   }
 
+  /**
+   * Drops every cached artifact for a format (memos, file cache, dead-marking)
+   * so the next call refetches — the UI's manual Refresh button.
+   */
+  refreshFormat(format: FormatDef): void {
+    this.pikaListMemo.delete(format.pikalytics);
+    this.chaosMemo.delete(format.smogon);
+    this.pikalyticsDead.delete(format.pikalytics);
+    this.cache.delete(`pika-l-${format.pikalytics}`);
+    this.cache.delete(`smogon-chaos-${format.smogon}`);
+    // Per-species details embed the slot they were fetched from; a refresh may
+    // move the slot, so they must go too.
+    this.cache.deleteByPrefix(`pika-p-${format.pikalytics}-`);
+  }
+
   /** Detail plus the attribution of whichever source actually served it. */
   async detail(format: FormatDef, species: string): Promise<DetailResult | undefined> {
     const pika = await this.pikalyticsDetail(format, species);

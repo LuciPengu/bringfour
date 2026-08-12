@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 /** Small file-backed cache: one JSON file per key, expired by TTL. */
@@ -31,5 +31,22 @@ export class FileCache {
 
   set(key: string, value: unknown): void {
     writeFileSync(this.pathFor(key), JSON.stringify({ savedAt: this.now().toISOString(), value }));
+  }
+
+  delete(key: string): void {
+    rmSync(this.pathFor(key), { force: true });
+  }
+
+  deleteByPrefix(prefix: string): void {
+    const sanitized = prefix.toLowerCase().replace(/[^a-z0-9._-]/gi, '_');
+    let files: string[];
+    try {
+      files = readdirSync(this.dir);
+    } catch {
+      return;
+    }
+    for (const file of files) {
+      if (file.startsWith(sanitized)) rmSync(join(this.dir, file), { force: true });
+    }
   }
 }

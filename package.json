@@ -12,15 +12,18 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "ui": "tsx src/web.ts"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
+    "@hono/node-server": "^2.1.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "@pkmn/dex": "^0.10.11",
     "@smogon/calc": "^0.11.0",
+    "hono": "^4.13.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {

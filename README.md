@@ -32,7 +32,26 @@ automatically when working in this directory. For other clients, run it with
 ```bash
 npm test          # unit tests (fixture-based, no network)
 npm run typecheck
+npm run ui        # local dashboard at http://localhost:4747
 ```
+
+## Web dashboard
+
+`npm run ui` serves a local dashboard (dark, sprite-heavy, no build step) over
+the same data layer as the MCP tools:
+
+- **Threats** — pick a saved team, get the calc-backed threat report as cards
+  with OHKO/2HKO badges, damage bars, a speed ladder, and speed-control flags.
+- **Damage Calc** — attacker/defender panels that pre-fill the most common meta
+  set (grayed-italic until you override a field, mirroring the MCP tool's
+  assumption echoing), live results, field conditions, swap sides.
+- **Teams** — create/edit Showdown pastes, or import from a pokepast.es link.
+- **Meta / deep-dive** — sortable usage table; click through to per-Pokemon
+  items, moves, spreads, natures, and teammates.
+
+The header shows the active format, data source and month, with a Refresh
+button that bypasses the 24h cache. Sprites are proxied from Pokemon Showdown's
+public sprite sets and cached locally.
 
 ## Data sources & behavior
 

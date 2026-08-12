@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VGC Tools</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">VGC<span>Tools</span></div>
+      <nav class="nav" id="nav">
+        <a href="#/threats" data-route="threats">Threats</a>
+        <a href="#/calc" data-route="calc">Damage Calc</a>
+        <a href="#/teams" data-route="teams">Teams</a>
+        <a href="#/meta" data-route="meta">Meta</a>
+      </nav>
+    </aside>
+    <div class="main">
+      <div class="header">
+        <select id="format-select" title="Format"></select>
+        <span class="badge-src" id="source-badge">loading…</span>
+        <span class="spacer"></span>
+        <button id="refresh-btn" title="Bypass the 24h cache and refetch usage data">↻ Refresh data</button>
+      </div>
+      <div class="view" id="view">Loading…</div>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
