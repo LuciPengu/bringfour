@@ -1,0 +1,45 @@
+{
+  "info": {
+    "metagame": "gen9championsvgc2026regmb",
+    "cutoff": 1760,
+    "number of battles": 1000
+  },
+  "data": {
+    "Garchomp": {
+      "Raw count": 400,
+      "usage": 0.4,
+      "Viability Ceiling": [4, 88, 84, 80],
+      "Abilities": { "roughskin": 300, "sandveil": 100 },
+      "Items": { "lifeorb": 200, "choicescarf": 100, "": 100 },
+      "Moves": {
+        "dragonclaw": 350,
+        "earthquake": 300,
+        "protect": 250,
+        "rockslide": 200,
+        "": 100
+      },
+      "Spreads": {
+        "Jolly:2/32/0/0/0/32": 250,
+        "Adamant:2/32/0/0/0/32": 100,
+        "Other": 50
+      },
+      "Tera Types": {},
+      "Teammates": { "Kingambit": 240, "Incineroar": 160 },
+      "Checks and Counters": {},
+      "Happiness": {}
+    },
+    "Kingambit": {
+      "Raw count": 500,
+      "usage": 0.45,
+      "Viability Ceiling": [4, 90, 86, 82],
+      "Abilities": { "defiant": 500 },
+      "Items": { "blackglasses": 500 },
+      "Moves": { "kowtowcleave": 450, "suckerpunch": 400 },
+      "Spreads": { "Adamant:32/32/0/0/2/0": 500 },
+      "Tera Types": { "dark": 300, "flying": 200 },
+      "Teammates": { "Garchomp": 300 },
+      "Checks and Counters": {},
+      "Happiness": {}
+    }
+  }
+}

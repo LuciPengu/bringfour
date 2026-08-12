@@ -1,0 +1,32 @@
+{
+  "name": "vgc-tools-mcp",
+  "version": "0.1.0",
+  "description": "MCP server giving agents Pokemon VGC teambuilding intelligence: meta usage, Pokemon deep-dives, calc-backed threat analysis, and damage calcs (Champions Reg M-B default).",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "vgc-tools-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "start": "tsx src/index.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@pkmn/dex": "^0.10.11",
+    "@smogon/calc": "^0.11.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

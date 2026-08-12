@@ -1,0 +1,108 @@
+{
+  "name": "Garchomp",
+  "types": [
+    "dragon",
+    "ground"
+  ],
+  "stats": {
+    "hp": 108,
+    "atk": 130,
+    "def": 95,
+    "spa": 80,
+    "spd": 85,
+    "spe": 102
+  },
+  "winPercent": "49.490",
+  "ranking": "1",
+  "games": 21371,
+  "abilities": [
+    {
+      "ability": "Rough Skin",
+      "percent": "98.5"
+    },
+    {
+      "ability": "Sand Veil",
+      "percent": "1.5"
+    }
+  ],
+  "items": [
+    {
+      "item": "Life Orb",
+      "item_us": "Life_Orb",
+      "percent": "51.5"
+    },
+    {
+      "item": "Sitrus Berry",
+      "item_us": "Sitrus_Berry",
+      "percent": "13.6"
+    }
+  ],
+  "moves": [
+    {
+      "move": "Dragon Claw",
+      "percent": "89.4",
+      "type": "dragon"
+    },
+    {
+      "move": "Rock Slide",
+      "percent": "82.0",
+      "type": "rock"
+    },
+    {
+      "move": "Earthquake",
+      "percent": "80.7",
+      "type": "ground"
+    },
+    {
+      "move": "Protect",
+      "percent": "70.2",
+      "type": "normal"
+    }
+  ],
+  "spreads": [
+    {
+      "nature": "",
+      "ev": "2/32/0/0/0/32",
+      "percent": "32.7"
+    },
+    {
+      "nature": "",
+      "ev": "0/32/2/0/0/32",
+      "percent": "3.9"
+    }
+  ],
+  "natures": [
+    {
+      "nature": "Jolly",
+      "percent": "60.5"
+    },
+    {
+      "nature": "Adamant",
+      "percent": "38.9"
+    }
+  ],
+  "team": [
+    {
+      "pokemon": "Whimsicott",
+      "types": [
+        "grass",
+        "fairy"
+      ],
+      "rank": 1,
+      "pokemon_trans": "Whimsicott",
+      "l": "en"
+    },
+    {
+      "pokemon": "Charizard",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "rank": 2,
+      "pokemon_trans": "Charizard",
+      "l": "en"
+    }
+  ],
+  "teammates": null,
+  "teratypes": null
+}

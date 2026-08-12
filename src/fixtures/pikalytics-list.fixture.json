@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Garchomp",
+    "rank": "1",
+    "winPercent": "49.490",
+    "wins": 10533,
+    "losses": 10751,
+    "games": 21371,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "stats": {
+      "hp": 108,
+      "atk": 130,
+      "def": 95,
+      "spa": 80,
+      "spd": 85,
+      "spe": 102
+    }
+  },
+  {
+    "name": "Sinistcha",
+    "rank": "2",
+    "winPercent": "48.981",
+    "wins": 8333,
+    "losses": 8681,
+    "games": 17068,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "stats": null
+  },
+  {
+    "name": "Basculegion",
+    "rank": "3",
+    "winPercent": "50.949",
+    "wins": 8738,
+    "losses": 8411,
+    "games": 17222,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "stats": null
+  }
+]
