@@ -64,12 +64,16 @@ function typeBadges(types) {
   }).join('');
 }
 
-function koBadge(category) {
+function koBadge(category, short = false) {
   const cls = {
     'guaranteed OHKO': 'ohko', 'possible OHKO': 'pohko',
     'guaranteed 2HKO': 'g2hko', 'possible 2HKO': 'p2hko', '3HKO or worse': 'safe',
   }[category] ?? 'safe';
-  return `<span class="ko ${cls}">${esc(category)}</span>`;
+  const compact = {
+    'guaranteed OHKO': 'OHKO', 'possible OHKO': 'OHKO?',
+    'guaranteed 2HKO': '2HKO', 'possible 2HKO': '2HKO?', '3HKO or worse': '3HKO+',
+  }[category] ?? category;
+  return `<span class="ko ${cls}" title="${esc(category)}">${esc(short ? compact : category)}</span>`;
 }
 
 function usageBar(percent, label) {
@@ -77,11 +81,32 @@ function usageBar(percent, label) {
   return `<div class="bar"><i style="width:${width}%"></i><b>${esc(label ?? `${percent}%`)}</b></div>`;
 }
 
-function dmgColor(category) {
-  return {
-    'guaranteed OHKO': 'var(--critical)', 'possible OHKO': 'var(--serious)',
-    'guaranteed 2HKO': 'var(--warning)', 'possible 2HKO': 'var(--accent)',
-  }[category] ?? 'var(--accent-dim)';
+/**
+ * The signature mark: damage as a depleting HP bar.
+ * Solid fill = HP guaranteed to remain (worst roll), hatched slice = the
+ * min–max uncertainty zone. Fill color follows the in-game rule for the
+ * worst-case remaining HP: >50% green, >20% yellow, else red.
+ */
+function hpBar(minPercent, maxPercent, large = false) {
+  const remainMin = Math.max(0, 100 - maxPercent); // worst case
+  const remainMax = Math.max(0, 100 - minPercent); // best case
+  const color = remainMin > 50 ? 'var(--hp)' : remainMin > 20 ? 'var(--warn)' : 'var(--critical)';
+  return `<div class="hpbar${large ? ' lg' : ''}">
+    <div class="hp-frame">
+      <i class="hp-left" data-w="${remainMin}" style="width:100%;background:${color}"></i>
+      <i class="hp-range" data-l="${remainMin}" data-w="${remainMax - remainMin}"
+         style="left:100%;width:${Math.max(0, remainMax - remainMin)}%;color:${color}"></i>
+    </div>
+    <b>${minPercent}–${maxPercent}%</b>
+  </div>`;
+}
+
+/** Kicks off the HP-drain animation for bars just inserted into the DOM. */
+function animateHpBars() {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll('.hp-frame .hp-left[data-w]').forEach((el) => { el.style.width = `${el.dataset.w}%`; });
+    document.querySelectorAll('.hp-frame .hp-range[data-l]').forEach((el) => { el.style.left = `${el.dataset.l}%`; });
+  }));
 }
 
 function evString(evs, evScale) {
@@ -468,10 +493,11 @@ function drawThreatReport(r) {
         <div class="vsrow">
           <span class="who">${spriteImg(memberSprites[v.member] ?? '', '')}${esc(v.member)}</span>
           <span class="mv" title="${esc(v.bestMove)}">${esc(v.bestMove)}</span>
-          <div class="bar"><i style="width:${Math.min(100, v.maxPercent)}%;background:${dmgColor(v.category)}"></i><b>${v.minPercent}–${v.maxPercent}%</b></div>
-          ${koBadge(v.category)}
+          ${hpBar(v.minPercent, v.maxPercent)}
+          ${koBadge(v.category, true)}
         </div>`).join('')}
     </div>`).join('');
+  animateHpBars();
 }
 
 // ---------------------------------------------------------------------------
@@ -511,7 +537,7 @@ async function renderCalc(params) {
     <datalist id="moves-list"></datalist>
     <div class="calc-grid">
       ${calcPanel('attacker')}
-      <div class="swap"><button id="swap-btn" title="Swap attacker and defender">⇄</button></div>
+      <div class="swap"><span class="vs">VS</span><button id="swap-btn" title="Swap attacker and defender">⇄</button></div>
       ${calcPanel('defender')}
     </div>
     <div class="formrow" style="margin-top:12px">
@@ -653,14 +679,12 @@ async function runCalcView() {
     <div class="result">
       <div class="big">${r.damage.minPercent}% – ${r.damage.maxPercent}% ${koBadge(category)}</div>
       <div class="desc">${esc(r.description)}</div>
-      <div class="dmgbar">
-        <i style="width:${Math.min(100, r.damage.maxPercent)}%;background:${dmgColor(category)}"></i>
-        <i style="width:${Math.min(100, r.damage.minPercent)}%;background:${dmgColor(category)};opacity:0.55"></i>
-      </div>
-      ${r.koChance ? `<div class="desc">${esc(r.koChance)}</div>` : ''}
+      ${hpBar(r.damage.minPercent, r.damage.maxPercent, true)}
+      ${r.koChance && !r.description?.includes(r.koChance) ? `<div class="desc">${esc(r.koChance)}</div>` : ''}
       ${r.assumptions.length ? `<ul class="assumptions">${r.assumptions.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
       <div class="attribution">${esc(r.attribution)}</div>
     </div>`;
+  animateHpBars();
 }
 
 // ---------------------------------------------------------------------------
