@@ -150,8 +150,8 @@ tr.rowlink { cursor: pointer; }
 tr.rowlink:hover td { background: var(--panel); }
 
 .mon { display: flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap; }
-.sprite { width: 32px; height: 32px; image-rendering: pixelated; flex-shrink: 0; }
-.sprite.lg { width: 64px; height: 64px; }
+.sprite { width: 48px; height: 48px; image-rendering: pixelated; flex-shrink: 0; }
+.sprite.lg { width: 96px; height: 96px; }
 
 /* quiet usage bars (tables) — thin, single hue, label carries the value */
 .bar { position: relative; background: var(--panel-2); border-radius: 3px; height: 15px; min-width: 120px; overflow: hidden; }
@@ -235,7 +235,7 @@ tr.rowlink:hover td { background: var(--panel); }
 .setline { color: var(--ink-2); font-size: 12px; margin-bottom: 8px; }
 .vsrow { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); }
 .vsrow .who { width: 112px; display: flex; align-items: center; gap: 6px; font-size: 12px; overflow: hidden; }
-.vsrow .who img { width: 24px; height: 24px; image-rendering: pixelated; }
+.vsrow .who img { width: 32px; height: 32px; image-rendering: pixelated; }
 .vsrow .mv { width: 88px; font-size: 11.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .vsrow .hpbar > b { min-width: 74px; font-size: 11px; }
 .score-pill {
@@ -248,7 +248,7 @@ tr.rowlink:hover td { background: var(--panel); }
 .lrow { display: flex; align-items: center; gap: 10px; padding: 4px 10px; border-radius: 7px; }
 .lrow.team { background: var(--hp-dim); border: 1px solid var(--hp); }
 .lrow .spd { width: 44px; text-align: right; font-family: var(--mono); font-weight: 700; }
-.lrow img { width: 24px; height: 24px; image-rendering: pixelated; }
+.lrow img { width: 32px; height: 32px; image-rendering: pixelated; }
 .lrow .tag { margin-left: auto; font-family: var(--px); font-size: 8.5px; letter-spacing: 0.5px; color: var(--muted); text-transform: uppercase; }
 .lrow.team .tag { color: var(--hp); }
 
@@ -287,7 +287,7 @@ label.inline { font-size: 12px; color: var(--ink-2); display: flex; gap: 5px; al
 
 .teamcard .pastebox { display: none; }
 .teamcard.open .pastebox { display: block; margin-top: 10px; }
-.sprites-row img { width: 40px; height: 40px; image-rendering: pixelated; }
+.sprites-row img { width: 64px; height: 64px; image-rendering: pixelated; }
 
 @media (max-width: 900px) {
   .calc-grid { grid-template-columns: 1fr; }
