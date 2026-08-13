@@ -4,20 +4,22 @@ import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
 import { Dex } from '@pkmn/dex';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { runCalc, toID, type CalcPokemonInput } from './calc.js';
 import { KNOWN_FORMATS, resolveFormat } from './formats.js';
 import { parseShowdownPaste } from './paste.js';
+import { dataDirsFromProcess } from './paths.js';
 import { DataService, GENERIC_ATTRIBUTION } from './sources.js';
 import { TeamStore } from './teams.js';
 import { analyzeThreats } from './threats.js';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const PORT = 4747;
-const service = new DataService({ cacheDir: join(ROOT, '.cache') });
-const teams = new TeamStore(join(ROOT, 'teams'));
-const SPRITE_DIR = join(ROOT, '.cache', 'sprites');
+const PORT = Number(process.env.PORT ?? 4747);
+const { teamsDir, cacheDir } = dataDirsFromProcess();
+const service = new DataService({ cacheDir });
+const teams = new TeamStore(teamsDir);
+const SPRITE_DIR = join(cacheDir, 'sprites');
 mkdirSync(SPRITE_DIR, { recursive: true });
 
 const gen9 = Dex.forGen(9);
@@ -189,8 +191,11 @@ app.get('/sprites/:name', async (c) => {
   });
 });
 
-app.use('/*', serveStatic({ root: 'public' }));
-app.get('/', serveStatic({ path: 'public/index.html' }));
+// serveStatic resolves relative to process.cwd(); the UI must find its assets
+// regardless of where the process was launched from (npx, Claude Desktop, …).
+const PUBLIC_DIR = relative(process.cwd(), join(ROOT, 'public')) || '.';
+app.use('/*', serveStatic({ root: PUBLIC_DIR }));
+app.get('/', serveStatic({ path: join(PUBLIC_DIR, 'index.html') }));
 
 serve({ fetch: app.fetch, port: PORT }, () => {
   console.log(`vgc-tools UI running at http://localhost:${PORT}`);

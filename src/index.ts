@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { fileURLToPath } from 'node:url';
-import { join } from 'node:path';
 import { z } from 'zod';
 import { runCalc, type CalcPokemonInput } from './calc.js';
 import { KNOWN_FORMATS, resolveFormat, type FormatDef } from './formats.js';
 import { parseShowdownPaste } from './paste.js';
+import { dataDirsFromProcess } from './paths.js';
 import { DataService, GENERIC_ATTRIBUTION } from './sources.js';
 import { TeamStore } from './teams.js';
 import { analyzeThreats } from './threats.js';
 
-const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const service = new DataService({ cacheDir: join(ROOT, '.cache') });
-const teams = new TeamStore(join(ROOT, 'teams'));
+const { teamsDir, cacheDir } = dataDirsFromProcess();
+const service = new DataService({ cacheDir });
+const teams = new TeamStore(teamsDir);
 
 const server = new McpServer({ name: 'vgc-tools', version: '0.1.0' });
 
