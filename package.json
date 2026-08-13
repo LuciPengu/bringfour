@@ -56,9 +56,6 @@
     "vitest": "^4.1.10"
   },
   "exports": {
-    "./*": {
-      "types": "./dist/*.d.ts",
-      "default": "./dist/*.js"
-    }
+    "./*": "./dist/*"
   }
 }
