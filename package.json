@@ -10,7 +10,16 @@
     "url": "git+https://github.com/LuciPengu/bringfour.git"
   },
   "homepage": "https://github.com/LuciPengu/bringfour#readme",
-  "keywords": ["pokemon", "vgc", "mcp", "mcp-server", "damage-calc", "teambuilding", "pikalytics", "smogon"],
+  "keywords": [
+    "pokemon",
+    "vgc",
+    "mcp",
+    "mcp-server",
+    "damage-calc",
+    "teambuilding",
+    "pikalytics",
+    "smogon"
+  ],
   "bin": {
     "bringfour": "dist/index.js",
     "bringfour-ui": "dist/web.js"
@@ -20,6 +29,7 @@
     "public"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "prepublishOnly": "npm run typecheck && npm test && npm run build",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
@@ -44,5 +54,11 @@
     "tsx": "^4.23.12",
     "typescript": "^7.0.2",
     "vitest": "^4.1.10"
+  },
+  "exports": {
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
   }
 }
