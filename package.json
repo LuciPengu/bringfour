@@ -1,14 +1,19 @@
 {
-  "name": "vgc-tools-mcp",
+  "name": "bringfour",
   "version": "0.1.0",
   "description": "MCP server giving agents Pokemon VGC teambuilding intelligence: meta usage, Pokemon deep-dives, calc-backed threat analysis, and damage calcs (Champions Reg M-B default).",
   "type": "module",
-  "private": true,
+  "private": false,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuciPengu/bringfour.git"
+  },
+  "homepage": "https://github.com/LuciPengu/bringfour#readme",
   "keywords": ["pokemon", "vgc", "mcp", "mcp-server", "damage-calc", "teambuilding", "pikalytics", "smogon"],
   "bin": {
-    "vgc-tools-mcp": "dist/index.js",
-    "vgc-tools-ui": "dist/web.js"
+    "bringfour": "dist/index.js",
+    "bringfour-ui": "dist/web.js"
   },
   "files": [
     "dist",

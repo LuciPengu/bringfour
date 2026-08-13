@@ -1,12 +1,12 @@
-# vgc-tools-mcp
+# bringfour
 
 **Give your AI assistant a competitive Pokémon brain.** An MCP server (plus a
 local web dashboard) that turns Claude, Cursor, or any MCP client into a VGC
 teambuilding partner — real usage stats, real damage calcs, and threat reports
 grounded in math instead of type-chart guessing.
 
-> 🚧 *Pre-1.0: the project is being renamed before its npm publish. Until then,
-> use the [from-source setup](#from-source) — everything works today.*
+> 🚧 *Pre-1.0: the npm publish is imminent — until it lands, use the
+> [from-source setup](#from-source); everything works today.*
 
 <!-- TODO(launch): record docs/threat-report.gif — paste team → threat cards -->
 ![Calc-backed threat report](docs/threat-report.gif)
@@ -22,7 +22,7 @@ Champions, Regulation Set M-B**); SV Regulation I and other formats are one
 ### Claude Code
 
 ```bash
-claude mcp add vgc-tools -- npx -y vgc-tools-mcp
+claude mcp add bringfour -- npx -y bringfour
 ```
 
 ### Claude Desktop / Cursor
@@ -30,9 +30,9 @@ claude mcp add vgc-tools -- npx -y vgc-tools-mcp
 ```json
 {
   "mcpServers": {
-    "vgc-tools": {
+    "bringfour": {
       "command": "npx",
-      "args": ["-y", "vgc-tools-mcp"]
+      "args": ["-y", "bringfour"]
     }
   }
 }
@@ -80,7 +80,7 @@ as the MCP tools:
 
 Running from a checkout (or any directory containing a `teams/` folder) keeps
 teams in `./teams/` and the 24h usage-data cache in `./.cache/`, as always.
-Running via `npx`/global install falls back to `~/.vgc-tools/`. Override with:
+Running via `npx`/global install falls back to `~/.bringfour/`. Override with:
 
 | Env var | Effect |
 | --- | --- |

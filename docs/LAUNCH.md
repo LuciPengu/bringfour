@@ -5,11 +5,8 @@ explicitly out of scope here — see docs/adr/0001.
 
 ## Product
 
-- [ ] Create the GitHub repository (no remote exists yet) and push.
-- [ ] Pick the product name (shortlist: bringfour, wideguard, damageroll,
-      threatlist — all clear on GitHub/npm/.gg/.app as of 2026-08-12) and
-      rename repo/package before anything ships — renaming after stars
-      accumulate wastes them.
+- [x] Create the GitHub repository and push (github.com/LuciPengu/bringfour).
+- [x] Product name picked: **bringfour** (availability verified 2026-08-12); repo/package renamed.
 - [ ] One-line install: `npx`-runnable MCP server (no clone + `tsx` required),
       with copy-paste config blocks for Claude Desktop, Claude Code, and Cursor.
 - [ ] Deployed read-only Dashboard demo on Vercel (free tier), linked from the

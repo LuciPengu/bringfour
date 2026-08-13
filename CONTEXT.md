@@ -1,4 +1,4 @@
-# VGC Tools
+# bringfour
 
 Competitive Pokémon (VGC) teambuilding intelligence, shipped three ways: an open-source MCP server and local dashboard for AI-tool users, and a paid hosted copilot for everyone else.
 

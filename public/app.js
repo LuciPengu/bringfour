@@ -1,4 +1,4 @@
-/* VGC Tools dashboard — vanilla JS, hash routing, one shared server data layer. */
+/* bringfour dashboard — vanilla JS, hash routing, one shared server data layer. */
 'use strict';
 
 const TYPE_COLORS = {

@@ -115,7 +115,7 @@ app.post('/api/teams/import', async (c) => {
   }
   if (!target.pathname.endsWith('/raw')) target.pathname = target.pathname.replace(/\/$/, '') + '/raw';
   try {
-    const res = await fetch(target, { headers: { 'user-agent': 'vgc-tools-mcp/0.1' } });
+    const res = await fetch(target, { headers: { 'user-agent': 'bringfour/0.1' } });
     if (!res.ok) return c.json({ error: `pokepast.es answered HTTP ${res.status}.` }, 502);
     const paste = await res.text();
     return c.json(teams.save(name, paste));
@@ -198,5 +198,5 @@ app.use('/*', serveStatic({ root: PUBLIC_DIR }));
 app.get('/', serveStatic({ path: join(PUBLIC_DIR, 'index.html') }));
 
 serve({ fetch: app.fetch, port: PORT }, () => {
-  console.log(`vgc-tools UI running at http://localhost:${PORT}`);
+  console.log(`bringfour UI running at http://localhost:${PORT}`);
 });

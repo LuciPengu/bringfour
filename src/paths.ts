@@ -20,7 +20,7 @@ export interface DataDirs {
  * Running from a checkout (or any directory with a teams/ folder) keeps
  * everything project-local, as before. Running via npx/global install — where
  * cwd may be unwritable (Claude Desktop launches servers from /) — lands in
- * ~/.vgc-tools instead of scribbling inside the npx cache.
+ * ~/.bringfour instead of scribbling inside the npx cache.
  */
 export function resolveDataDirs(probe: PathProbe): DataDirs {
   const { env, cwd, home, exists } = probe;
@@ -36,8 +36,8 @@ export function resolveDataDirs(probe: PathProbe): DataDirs {
     teamsDir = join(cwd, 'teams');
     cacheDir = join(cwd, '.cache');
   } else {
-    teamsDir = join(home, '.vgc-tools', 'teams');
-    cacheDir = join(home, '.vgc-tools', 'cache');
+    teamsDir = join(home, '.bringfour', 'teams');
+    cacheDir = join(home, '.bringfour', 'cache');
   }
 
   if (env.VGC_TEAMS_DIR) teamsDir = env.VGC_TEAMS_DIR;

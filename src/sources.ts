@@ -40,7 +40,7 @@ export interface DataServiceOptions {
 
 async function defaultFetchJson(url: string): Promise<unknown> {
   const res = await fetch(url, {
-    headers: { 'user-agent': 'vgc-tools-mcp/0.1 (personal teambuilding tool)' },
+    headers: { 'user-agent': 'bringfour/0.1 (open-source teambuilding tool; github.com/LuciPengu/bringfour)' },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return res.json();

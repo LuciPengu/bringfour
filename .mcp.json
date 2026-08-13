@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "vgc-tools": {
+    "bringfour": {
       "command": "npx",
       "args": ["tsx", "src/index.ts"]
     }

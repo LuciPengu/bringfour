@@ -14,7 +14,7 @@ const { teamsDir, cacheDir } = dataDirsFromProcess();
 const service = new DataService({ cacheDir });
 const teams = new TeamStore(teamsDir);
 
-const server = new McpServer({ name: 'vgc-tools', version: '0.1.0' });
+const server = new McpServer({ name: 'bringfour', version: '0.1.0' });
 
 function text(payload: unknown): { content: [{ type: 'text'; text: string }] } {
   return {

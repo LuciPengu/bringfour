@@ -9,10 +9,10 @@ const base = {
 };
 
 describe('resolveDataDirs', () => {
-  it('falls back to ~/.vgc-tools when cwd has no teams dir', () => {
+  it('falls back to ~/.bringfour when cwd has no teams dir', () => {
     expect(resolveDataDirs(base)).toEqual({
-      teamsDir: '/Users/me/.vgc-tools/teams',
-      cacheDir: '/Users/me/.vgc-tools/cache',
+      teamsDir: '/Users/me/.bringfour/teams',
+      cacheDir: '/Users/me/.bringfour/cache',
     });
   });
 
@@ -43,6 +43,6 @@ describe('resolveDataDirs', () => {
 
   it('a single per-dir override leaves the other dir on the normal chain', () => {
     const dirs = resolveDataDirs({ ...base, env: { VGC_TEAMS_DIR: '/teams/here' } });
-    expect(dirs).toEqual({ teamsDir: '/teams/here', cacheDir: '/Users/me/.vgc-tools/cache' });
+    expect(dirs).toEqual({ teamsDir: '/teams/here', cacheDir: '/Users/me/.bringfour/cache' });
   });
 });
