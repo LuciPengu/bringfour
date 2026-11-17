@@ -2,18 +2,14 @@
 
 **Give your AI assistant a competitive Pokémon brain.** An MCP server (plus a
 local web dashboard) that turns Claude, Cursor, or any MCP client into a VGC
-teambuilding partner — real usage stats, real damage calcs, and threat reports
+teambuilding partner, with real usage stats, real damage calcs, and threat reports
 grounded in math instead of type-chart guessing.
 
-> 🚧 *Pre-1.0: the npm publish is imminent — until it lands, use the
-> [from-source setup](#from-source); everything works today.*
-
-<!-- TODO(launch): record docs/threat-report.gif — paste team → threat cards -->
-![Calc-backed threat report](docs/threat-report.gif)
+> Pre-1.0 and not on npm yet. Use the [from-source setup](#from-source).
 
 Ask *"what beats my trick room team?"* and get back OHKO/2HKO lines computed
 with `@smogon/calc` against the top meta Pokémon **at their actual most common
-spreads** — not vibes. Defaults to the current official format (**Pokémon
+spreads**, not vibes. Defaults to the current official format (**Pokémon
 Champions, Regulation Set M-B**); SV Regulation I and other formats are one
 `format` parameter away.
 
@@ -41,7 +37,7 @@ claude mcp add bringfour -- npx -y bringfour
 ### From source
 
 ```bash
-git clone <this repo> && cd <repo> && npm install
+git clone https://github.com/LuciPengu/bringfour && cd bringfour && npm install
 ```
 
 The repo ships a project-scoped `.mcp.json`, so Claude Code picks the server
@@ -67,13 +63,13 @@ npm run ui        # http://localhost:4747
 A local dashboard (dark, sprite-heavy, no build step) over the same data layer
 as the MCP tools:
 
-- **Threats** — pick a saved team, get the calc-backed threat report as cards
+- **Threats**: pick a saved team, get the calc-backed threat report as cards
   with OHKO/2HKO badges, damage bars, a speed ladder, and speed-control flags.
-- **Damage Calc** — attacker/defender panels that pre-fill the most common meta
+- **Damage Calc**: attacker/defender panels that pre-fill the most common meta
   set (grayed-italic until you override a field), live results, field
   conditions, swap sides.
-- **Teams** — create/edit Showdown pastes, or import from a pokepast.es link.
-- **Meta / deep-dive** — sortable usage table; click through to per-Pokemon
+- **Teams**: create/edit Showdown pastes, or import from a pokepast.es link.
+- **Meta / deep-dive**: sortable usage table; click through to per-Pokemon
   items, moves, spreads, natures, and teammates.
 
 ## Where data lives
@@ -90,14 +86,14 @@ Running via `npx`/global install falls back to `~/.bringfour/`. Override with:
 
 ## Data sources & behavior
 
-- **Pikalytics** (pikalytics.com) is the primary usage source — in-game ranked
+- **Pikalytics** (pikalytics.com) is the primary usage source: in-game ranked
   battle data for Champions, HOME battle data for SV. Pikalytics asks for
   attribution when citing its stats; every tool response carries it.
 - **Smogon usage stats** (smogon.com/stats, Showdown ladder chaos JSON) are the
   automatic fallback when Pikalytics lacks a format.
 - Usage dumps are monthly; the service walks back up to 7 months to find the
   newest published data, and caches responses for 24h.
-- Teams are plain Showdown-export text files — edit them freely.
+- Teams are plain Showdown-export text files, so edit them freely.
 
 ### Champions caveats (honest-approximation zone)
 
@@ -113,20 +109,19 @@ Running via `npx`/global install falls back to `~/.bringfour/`. Override with:
 - **v2:** EV-spread optimization; tournament results/team lists via the
   documented Limitless API.
 - **Hosted copilot:** a web app where a frontier model writes full team
-  coaching reports over these tools — in design, gated on this repo proving
+  coaching reports over these tools. It is in design, gated on this repo proving
   demand. Star the repo if you want it to exist.
 
 ## Support
 
-<!-- TODO(launch): add GitHub Sponsors / Ko-fi link -->
 If this saves you a ladder session of scouting, a star is the best signal you
 can send.
 
 ## License & legal
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
-Unofficial fan tool — not affiliated with, endorsed, or supported by Nintendo,
+Unofficial fan tool, not affiliated with, endorsed, or supported by Nintendo,
 Creatures Inc., GAME FREAK, or The Pokémon Company. Pokémon and all respective
 names are trademarks of their owners. Usage data courtesy of
 [Pikalytics](https://www.pikalytics.com) (attribution requested) and
